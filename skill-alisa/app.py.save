@@ -1,0 +1,27 @@
+total 8from flask import Flask, request import logging import 
+json drwxr-xr-x 2 pin pin 4096 Aug 14 08:47 __pycache__ app = 
+Flask(__name__) -rw-r--r-- 1 pin pin 657 Aug 14 10:20 app.py 
+logging.basicConfig(level=logging.DEBUG)
+
+@app.route("/", methods=['GET','POST'])
+def main():
+	logging.info(request.json)
+	response = {
+		"version": request.json["version"],
+		"session": request.json["session"],
+		"response":{
+			"end_session": False
+		}
+	}
+	
+	req = request.json
+	
+	if req["session"]["new"]:
+		response["response"]["text"] = "Привет! Как дела?"
+	else:
+		if req["request"]["command"] == "хорошо":
+			response["response"]["text"] = "Отлично"
+		#elif:
+		#	response["response"]["text"] = "Ошибка"
+
+	return json.dumps(response)	

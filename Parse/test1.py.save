@@ -1,0 +1,68 @@
+from bs4 import BeautifulSoup
+import requests
+import webbrowser as wb
+from urllib.parse import urljoin
+from python_rucaptcha import ImageCaptcha
+
+def parse_content(content):
+	soup = BeautifulSoup(content, 'html.parser')
+#	print(soup)
+	boxes = soup.find_all("a") #('li', class_='serp-item')
+#	print(boxes)
+#	print(len(boxes))
+	href_search = []
+	print("1")
+	for box in boxes:
+		link = box.find('a', class_='Link Link_theme_normal OrganicTitle-Link Typo Typo_text_l Typo_line_m organic__url link i-bem link_js_inited').attrs['href']
+		print(link)
+		href_search.append(link)
+	return href_search
+
+def capcha(content_capcha):
+	current_url = "https://yandex.ru/"
+	soup = BeautifulSoup(content_capcha, 'html.parser')
+	url_capcha = soup.find('form', class_='CheckboxCaptcha-Form').attrs['action']
+#	print(url_capcha)
+	link_for_post = urljoin(current_url, url_capcha)
+	resp_post = requests.post(link_for_post)
+	print(resp_post.text)
+
+def solution_capcha():
+	RUCAPTCHA_KEY = ""
+
+# Ссылка на изображения для расшифровки
+
+image_link = ""
+
+# Возвращается JSON содержащий информацию для решения капчи
+
+user_answer = ImageCaptcha.ImageCaptcha(rucaptcha_key=RUCAPTCHA_KEY).captcha_handler(captcha_link=image_link)
+
+
+
+if not user_answer['error']:
+
+	# решение капчи
+
+	print(user_answer['captchaSolve'])
+
+	print(user_answer['taskId'])
+
+elif user_answer['error']:
+
+	# Тело ошибки, если есть
+
+	print(user_answer ['errorBody'])
+
+	print(user_answer ['errorBody'])
+
+url = 'https://yandex.ru/search/?lr=56&text={}'.format("смешарики")
+wb.open_new_tab(url)
+response_url = requests.get(url)
+#print(response_url.text)
+capcha(response_url.text)
+list_search = parse_content(response_url.content)
+wb.open_new_tab(list_search[0])
+#soup = BeautifulSoup(html_doc)
+
+#print(dir(soup))
