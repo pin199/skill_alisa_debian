@@ -47,7 +47,7 @@ def req_search_yandex_without_capcha():
 	data = {
 	
 	}
-
+	return json.dumps(data)
 """
 def solution_capcha(content_capcha):
 	RUCAPTCHA_KEY = "2036e78638fb55be1d567dfdb33788ba"
@@ -67,7 +67,8 @@ wb.open_new_tab(url)
 
 
 ###Response yandex###
-req_search_yandex_without_capcha()
+headers = req_search_yandex_without_capcha()
+res_s = request.get(url, headers = headers)
 
 response_url = requests.get(url)
 #print(response_url.text)
