@@ -65,11 +65,9 @@ def solution_capcha(content_capcha):
 url = 'https://yandex.ru/search/?lr=56&text={}'.format("смешарики")
 wb.open_new_tab(url)
 
-################
-Response yandex
-################
+
+###Response yandex###
 req_search_yandex_without_capcha()
-###############
 
 response_url = requests.get(url)
 #print(response_url.text)
