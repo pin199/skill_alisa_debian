@@ -43,6 +43,11 @@ def capcha(content_capcha):
 #	solution_capcha(url_resp_capcha)
 #	print(resp_post.text)
 
+def req_search_yandex_without_capcha():
+	data = {
+	
+	}
+
 """
 def solution_capcha(content_capcha):
 	RUCAPTCHA_KEY = "2036e78638fb55be1d567dfdb33788ba"
@@ -59,6 +64,13 @@ def solution_capcha(content_capcha):
 """
 url = 'https://yandex.ru/search/?lr=56&text={}'.format("смешарики")
 wb.open_new_tab(url)
+
+################
+Response yandex
+################
+req_search_yandex_without_capcha()
+###############
+
 response_url = requests.get(url)
 #print(response_url.text)
 capcha(response_url.text)
