@@ -45,7 +45,20 @@ def capcha(content_capcha):
 
 def req_search_yandex_without_capcha():
 	data = {
-	
+		'Host': 'yandex.ru',
+		'Cookie': 'mda=0; yandex_gid=56; yandexuid=7087684401630933978; yuidss=7087684401630933978; is_gdpr=0; is_gdpr_b=CLPnPBCARCgC; i=bmquR2QYmkC+Iu1VkNhhZArHMW0WRVAzBehX2XxY2DtfnQZCu2iFjQ6saUsGaipPr3bxDRytJg3kTgtv3tcWTeL0IDs=; font_loaded=YSv1; ymex=1946294093.yrts.1630934093; yabs-frequency=/5/0000000000000000/Wc51ROO0002eGYC0/; _ym_uid=1630934123448513266; yp=1633525979.ygu.1#1646702097.szm.1:1440x900:1387x707; my=YwA=; _yasc=un1dOzEMYzsYnesXnRFJlmxkTrP3uTGk2l3AadUOJO71+r1xunEame+H; _ym_d=1630938878',
+		'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="92"',
+		'Sec-Ch-Ua-Mobile': '?0',
+		'Upgrade-Insecure-Requests': '1',
+		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+		'Sec-Fetch-Site': 'none',
+		'Sec-Fetch-Mode': 'navigate',
+		'Sec-Fetch-User': '?1',
+		'Sec-Fetch-Dest': 'document',
+		'Accept-Encoding': 'gzip, deflate',
+		'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+		'Connection': 'close'
 	}
 	return json.dumps(data)
 """
