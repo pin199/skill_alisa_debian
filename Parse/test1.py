@@ -2,10 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import webbrowser as wb
 from urllib.parse import urljoin
-from python_rucaptcha import ImageCaptcha
+#from python_rucaptcha import ImageCaptcha
 import sys
-sys.path.insert(0, "/home/pin/PythonProg/ImageRecognition")
+sys.path.insert(0, "/Users/nikolaj/PythonProg/gitSkillAlisa/skill_alisa_debian/Parse/ImageRecognition")
 import recim
+import json
+import requests
 
 def parse_content(content):
 	soup = BeautifulSoup(content, 'html.parser')
@@ -60,6 +62,7 @@ def req_search_yandex_without_capcha():
 		'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
 		'Connection': 'close'
 	}
+	print(json.dumps(data))
 	return json.dumps(data)
 """
 def solution_capcha(content_capcha):
@@ -81,7 +84,7 @@ wb.open_new_tab(url)
 
 ###Response yandex###
 headers = req_search_yandex_without_capcha()
-res_s = request.get(url, headers = headers)
+res_s = requests.get(url, headers = headers)
 
 response_url = requests.get(url)
 #print(response_url.text)
