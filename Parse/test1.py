@@ -62,8 +62,9 @@ def req_search_yandex_without_capcha():
 		'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
 		'Connection': 'close'
 	}
-	print(json.dumps(data))
-	return json.dumps(data)
+#	print(json.dumps(data))
+#	return json.dumps(data)
+	return data
 """
 def solution_capcha(content_capcha):
 	RUCAPTCHA_KEY = "2036e78638fb55be1d567dfdb33788ba"
@@ -86,10 +87,11 @@ wb.open_new_tab(url)
 headers = req_search_yandex_without_capcha()
 res_s = requests.get(url, headers = headers)
 
-response_url = requests.get(url)
+#response_url = requests.get(url)
 #print(response_url.text)
-capcha(response_url.text)
-list_search = parse_content(response_url.content)
+#capcha(response_url.text)
+print(res_s.text)
+list_search = parse_content(res_s.content)
 wb.open_new_tab(list_search[0])
 #soup = BeautifulSoup(html_doc)
 
