@@ -8,6 +8,7 @@ sys.path.insert(0, "/Users/nikolaj/PythonProg/gitSkillAlisa/skill_alisa_debian/P
 import recim
 import json
 import requests
+import httplib2
 
 def parse_content(content):
 	soup = BeautifulSoup(content, 'html.parser')
@@ -85,14 +86,36 @@ wb.open_new_tab(url)
 
 ###Response yandex###
 headers = req_search_yandex_without_capcha()
-res_s = requests.get(url, headers = headers)
 
-#response_url = requests.get(url)
-#print(response_url.text)
-#capcha(response_url.text)
-print(res_s.text)
-list_search = parse_content(res_s.content)
-wb.open_new_tab(list_search[0])
-#soup = BeautifulSoup(html_doc)
+http_req = httplib2.Http()
+content = http_req.request(url, method = "GET",headers = {'Host': 'yandex.ru',
+        'Cookie': 'mda=0; yandex_gid=56; yandexuid=7087684401630933978; yuidss=7087684401630933978',
+        'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="92"',
+        'Sec-Ch-Ua-Mobile': '?0',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gec',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-User': '?1',
+        'Sec-Fetch-Dest': 'document',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Connection': 'close'})[1]
+
+print(content.decode())
+
+#headers = req_search_yandex_without_capcha()
+#res_s = requests.get(url, headers = headers)
+
+###################
+
+##response_url = requests.get(url)
+##print(response_url.text)
+##capcha(response_url.text)
+#print(res_s.text)
+#list_search = parse_content(res_s.content)
+#wb.open_new_tab(list_search[0])
+##soup = BeautifulSoup(html_doc)
 
 #print(dir(soup))
