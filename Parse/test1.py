@@ -80,7 +80,7 @@ def solution_capcha(content_capcha):
 		print(user_answer['errorBody'])
 		print(user_answer['errorBody'])
 """
-url = 'https://yandex.ru/search/?lr=56&text={}'.format("смешарики")
+url = 'https://yandex.ru/search/?lr=56&text={}'.format("пин-код")
 wb.open_new_tab(url)
 
 
@@ -130,10 +130,22 @@ capcha_content = http_req_capcha.request(url_capcha,method = "GET",headers= {
 	'Accept-Encoding': 'gzip, deflate',
 	'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
 	'Connection': 'close'
-})[1]
+})[0]
 
+#soup_check_capcha = BeautifulSoup(capcha_content,'html.parser')
+#boxes_check_capcha = soup_check_capcha.find('form', class_='AdvancedCaptcha-Form').attrs['action']
+print('-------------------------------------')
+print(capcha_content['location'])
+#print(boxes_check_capcha)
+#print(capcha_content.getheaders())
+print('-------------------------------------')
+
+"""
 url_check_capcha = '/checkcaptcha?key=00Aa8x4LReWmhyTKSD4QzlWn6ck3qzVC_3%2F1632662498%2Ffa57d6f4db4c9a337822795ceba5cf83_07024daa9f4107e6e920a144bccb7b43&retpath=https%3A%2F%2Fyandex.ru%2Fsearch%3Flr%3D56%26text%3D%25D1%2581%25D0%25BC%25D0%25B5%25D1%2588%25D0%25B0%25D1%2580%25D0%25B8%25D0%25BA%25D0%25B8_f7638bef21a6e08dd809d7942c1c1c86&u=9c926652-b4d58985-9529d41f-a2027be3&rep=%D0%BF%D0%BE%D0%BA%D0%B8%D0%B4%D0%B0%D1%8E%20%D0%BF%D0%BE%D1%81%D0%B5%D1%82%D0%B8%D1%82%D0%B5%D0%BB%D0%B5'
-
+"""
+url_check_capcha = '/checkcaptcha?key=00Aa8x4LReWmhyTKSD4QzlWn6ck3qzVC_3%2F1632662498%2Ffa57d6f4db4c9a337822795ceba5cf83_07024daa9f4107e6e920a144bccb7b43&retpath='+ +'&u=9c926652-b4d58985-9529d41f-a2027be3&rep=%D0%BF%D0%BE%D0%BA%D0%B8%D0%B4%D0%B0%D1%8E%20%D0%BF%D0%BE%D1%81%D0%B5%D1%82%D0%B8%D1%82%D0%B5%D0%BB%D0%B5'
+#url_check_capcha = boxes_check_capcha
+"""
 url_capcha_main = 'https://yandex.ru'+ url_check_capcha
 http_req_capcha_main = httplib2.Http()
 capcha_main_content = http_req_capcha_main.request(url_capcha_main, method = "POST", headers = {
@@ -151,6 +163,13 @@ capcha_main_content = http_req_capcha_main.request(url_capcha_main, method = "PO
 	'Cookie': 'mda=0; font_loaded=YSv1; spravka=dD0xNjMyNTc0ODQ1O2k9NzcuMjIyLjEwNy44O0Q9RjVCMEM2QkVEQzc1Rjg1NDc4MTA2RkQ2MDkwMUI0NTJGM0MwMThEN0ZDQjM1QTJGQzkzQzVFOTY3RkFDOTk1Q0U0NDA7dT0xNjMyNTc0ODQ1MTg1MjE0NDUxO2g9NmU4NjBkZDM3OGE3NmQ3MDZlOGIxZGJkZDA2NDYyZmQ=; yp=1633525979.ygu.1#1646702097.szm.1:1440x900:911x707#1633781776.csc.1#1664110856.p_sw.1632574855#1633179014.mcv.0#1633179014.mct.null#1633179014.mcl.; gdpr=0; _ym_visorc=b',
 	'Connection': 'close'
 })[0]
+"""
+print("++++++++++++++++++++++++++++++++++")
+print(capcha_main)
+print("++++++++++++++++++++++++++++++++++")
+#url_yan = capcha_main_content['location']
+url_yan = capcha_content['location']
+wb.open_new_tab(url_yan)
 
 print(content.decode())
 print('=============================================')
