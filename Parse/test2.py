@@ -5,7 +5,7 @@ import webbrowser as wb
 from urllib.parse import urljoin
 #from python_rucaptcha import ImageCaptcha
 import sys
-sys.path.insert(0, "/home/krv/git/skill_alisa_debian/Parse/ImageRecognition")
+sys.path.insert(0, "/Users/nikolaj/PythonProg/gitSkillAlisa/skill_alisa_debian/Parse/ImageRecognition")
 import recim
 import json
 import requests
@@ -47,16 +47,30 @@ def capcha(content_capcha):
 #	solution_capcha(url_resp_capcha)
 #	print(resp_post.text)
 def read_text(list_p):
+# Нужно обрезать текст по точке или по правому входящему
     i = 0
+    j = 0
 #    count_symbls
     max_count_symbls = 1024
     add_symbl = ''
     for text in list_p:
-        for str in enumerate(list_p[i]):
-            if int(str[0]) < max_count_symbls:
+        for str in enumerate(text):
+            if j < max_count_symbls:
                 add_symbl += str[1]
+                j += 1
+                print(j)
             else:
-                # Learn long max str
+                if str[1] != ' ' or str[1] != '.' or str[1] != '':
+                    # вырезать слова из текста
+                    print(' '.join(add_symbl.split(' ')[:-1]))
+			    #Learn long max str
+                save_state = str[0]
+                print(save_state)
+                #Отправить запрос
+                print(add_symbl)
+                #Почистить add_symbl
+                add_symbl = ''
+                j = 0
         i += 1
         
 """
@@ -214,7 +228,7 @@ url_yan = capcha_main_content['location']
 #http_req_main_capcha = httplib2.Http()
 #content_req_main = http_req_main_capcha.request(url_yan,method="GET")[1]
 #print(content_req_main.decode())
-driver_bw = webdriver.Firefox()
+driver_bw = webdriver.Safari()
 driver_bw.get(url_yan)
 get_source = driver_bw.page_source
 
@@ -256,8 +270,10 @@ for box in boxes_go_site_title:
     link = box.text
     print(link)
 #print(boxes_go_site)
+print('+++++++++++++++++++++++++++++++++++++++++++++++')
+read_text(list_p)
 
-
+driver_bw.close()
 
 #url_yan = capcha_content['location']
 #wb.open_new_tab(url_yan)
