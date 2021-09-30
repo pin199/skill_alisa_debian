@@ -50,6 +50,8 @@ def read_text(list_p):
 # Нужно обрезать текст по точке или по правому входящему
     i = 0
     j = 0
+    a = ''
+    state_str = ''
 #    count_symbls
     max_count_symbls = 1024
     add_symbl = ''
@@ -58,16 +60,31 @@ def read_text(list_p):
             if j < max_count_symbls:
                 add_symbl += str[1]
                 j += 1
-                print(j)
+#                print(j)
+#                print(str[1])
             else:
-                if str[1] != ' ' or str[1] != '.' or str[1] != '':
+                print("###################################")
+                print(str[1])
+                print("###################################")
+                if str[1] != ' ' or str[1] != '.' or str[1] != '' or str[1] != ',':
                     # вырезать слова из текста
-                    print(' '.join(add_symbl.split(' ')[:-1]))
+                    count = add_symbl.count(' ') 
+                    print("----------------------------------")
+                    print(a)
+                    print("----------------------------------")
+                    if a == '':
+                        print(' '.join(add_symbl.split(' ')[:-1]))
+                        a = ' '.join(add_symbl.split(' ')[count:])
+                    else:
+#                        a = ' '.join(add_symbl.split(' ')[count:])
+                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
+                        a = ' '.join(add_symbl.split(' ')[count:])
+                state_str = str[1]
 			    #Learn long max str
                 save_state = str[0]
-                print(save_state)
+#                print(save_state)
                 #Отправить запрос
-                print(add_symbl)
+ #               print(add_symbl)
                 #Почистить add_symbl
                 add_symbl = ''
                 j = 0
@@ -256,21 +273,21 @@ soup_go_site = BeautifulSoup(get_source, 'html.parser')
 boxes_go_site = soup_go_site.find_all('p')
 boxes_go_site_main_title = soup_go_site.find('h1').text
 boxes_go_site_title = soup_go_site.find_all('h2')
-print(boxes_go_site)
+#print(boxes_go_site)
 list_p = []
 for box in boxes_go_site:
     try:
         link = box.text
-        print(link)
+#        print(link)
         list_p.append(link)
     except:
         pass
-print(boxes_go_site_main_title)
+#print(boxes_go_site_main_title)
 for box in boxes_go_site_title:
     link = box.text
-    print(link)
+#    print(link)
 #print(boxes_go_site)
-print('+++++++++++++++++++++++++++++++++++++++++++++++')
+#print('+++++++++++++++++++++++++++++++++++++++++++++++')
 read_text(list_p)
 
 driver_bw.close()
