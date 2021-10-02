@@ -67,22 +67,28 @@ def read_text(list_p):
 #                print(str[1])
 #                print("###################################")
                 if str[1] != ' ' or str[1] != '.' or str[1] != '' or str[1] != ',':
+                    print(str[1])
                     # вырезать слова из текста
                     count = add_symbl.count(' ') 
                     print("----------------------------------")
                     print(a)
                     print("----------------------------------")
                     if a == '':
+#                        print(i)
+#                        if i == 0:
                         print('1')
                         print(' '.join(add_symbl.split(' ')[:-1]))
-                        a = ' '.join(add_symbl.split(' ')[count:])
+                        if ' '.join(add_symbl.split(' ')[count:]) != ' ':
+                            print(2)
+#                            a = ' '
+                        a =' '.join(add_symbl.split(' ')[count:])
                     else:
 #                        a = ' '.join(add_symbl.split(' ')[count:])
                         print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
                         a = ' '.join(add_symbl.split(' ')[count:])
                 else:
                     print(' '.join(add_symbl.split(' ')[:-1]))
-                    a = ''
+#                    a = ''
                 state_str = str[1]
                 print("##################################")
                 print(state_str)
