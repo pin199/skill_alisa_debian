@@ -63,10 +63,11 @@ def read_text(list_p):
 #                print(j)
 #                print(str[1])
             else:
-#                print("###################################")
-#                print(str[1])
-#                print("###################################")
-                if str[1] != ' ' or str[1] != '.' or str[1] != '' or str[1] != ',':
+                print("###################################")
+                print(str[1])
+                print("###################################")
+                if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
+                    print('3')
                     print(str[1])
                     # вырезать слова из текста
                     count = add_symbl.count(' ') 
@@ -77,11 +78,12 @@ def read_text(list_p):
 #                        print(i)
 #                        if i == 0:
                         print('1')
-                        print(' '.join(add_symbl.split(' ')[:-1]))
-                        if ' '.join(add_symbl.split(' ')[count:]) != ' ':
-                            print(2)
+#                        print(' '.join(add_symbl.split(' ')[count:]))
+                        print(' '.join(add_symbl.split(' ')[:-1])) 
+#                        if ' '.join(add_symbl.split(' ')[count:]) != ' ':
+#                            print(2)
 #                            a = ' '
-                        a =' '.join(add_symbl.split(' ')[count:])
+#                        a =' '.join(add_symbl.split(' ')[count:])
                     else:
 #                        a = ' '.join(add_symbl.split(' ')[count:])
                         print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
@@ -90,9 +92,9 @@ def read_text(list_p):
                     print(' '.join(add_symbl.split(' ')[:-1]))
 #                    a = ''
                 state_str = str[1]
-                print("##################################")
+                print("=================================")
                 print(state_str)
-                print("#################################")
+                print("=================================")
 			    #Learn long max str
                 save_state = str[0]
 #                print(save_state)
