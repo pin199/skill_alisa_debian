@@ -79,17 +79,24 @@ def read_text(list_p):
 #                        if i == 0:
                         print('1')
 #                        print(' '.join(add_symbl.split(' ')[count:]))
-                        print(' '.join(add_symbl.split(' ')[:-1])) 
+                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1])) 
 #                        if ' '.join(add_symbl.split(' ')[count:]) != ' ':
 #                            print(2)
 #                            a = ' '
-#                        a =' '.join(add_symbl.split(' ')[count:])
+                        a =' '.join(add_symbl.split(' ')[count:])
                     else:
 #                        a = ' '.join(add_symbl.split(' ')[count:])
                         print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
                         a = ' '.join(add_symbl.split(' ')[count:])
                 else:
-                    print(' '.join(add_symbl.split(' ')[:-1]))
+                    print(a+state_str +' '.join(add_symbl.split(' ')[:-1]))
+                    print("**********************************")
+                    print(a)
+                    print("**********************************")
+                    a = ' '.join(add_symbl.split(' ')[count:])
+                    print("1111111111111111111111111111111111")
+                    print(a)
+                    print("1111111111111111111111111111111111")
 #                    a = ''
                 state_str = str[1]
                 print("=================================")
