@@ -63,21 +63,22 @@ def read_text(list_p):
 #                print(j)
 #                print(str[1])
             else:
-                print("###################################")
-                print(str[1])
-                print("###################################")
+                count = add_symbl.count(' ')
+#                print("###################################")
+#                print(str[1])
+#                print("###################################")
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
-                    print('3')
-                    print(str[1])
+#                    print('3')
+#                    print(str[1])
                     # вырезать слова из текста
-                    count = add_symbl.count(' ') 
-                    print("----------------------------------")
-                    print(a)
-                    print("----------------------------------")
+#                    count = add_symbl.count(' ') 
+#                    print("----------------------------------")
+#                    print(a)
+#                    print("----------------------------------")
                     if a == '':
 #                        print(i)
 #                        if i == 0:
-                        print('1')
+#                        print('1')
 #                        print(' '.join(add_symbl.split(' ')[count:]))
                         print(a+state_str+' '.join(add_symbl.split(' ')[:-1])) 
 #                        if ' '.join(add_symbl.split(' ')[count:]) != ' ':
@@ -90,18 +91,18 @@ def read_text(list_p):
                         a = ' '.join(add_symbl.split(' ')[count:])
                 else:
                     print(a+state_str +' '.join(add_symbl.split(' ')[:-1]))
-                    print("**********************************")
-                    print(a)
-                    print("**********************************")
+#                    print("**********************************")
+#                    print(a)
+#                    print("**********************************")
                     a = ' '.join(add_symbl.split(' ')[count:])
-                    print("1111111111111111111111111111111111")
-                    print(a)
-                    print("1111111111111111111111111111111111")
+#                    print("1111111111111111111111111111111111")
+#                    print(a)
+#                    print("1111111111111111111111111111111111")
 #                    a = ''
                 state_str = str[1]
-                print("=================================")
-                print(state_str)
-                print("=================================")
+#                print("=================================")
+#                print(state_str)
+#                print("=================================")
 			    #Learn long max str
                 save_state = str[0]
 #                print(save_state)
@@ -283,12 +284,12 @@ for box in boxes_main_capcha:
         href_search.append(link)
     except:
         pass
-#print(href_search)
+print(href_search)
 #    print(link)
 #print(get_source)
 
 ################GoSite###################
-driver_bw.get(href_search[5])
+driver_bw.get(href_search[6])
 get_source = driver_bw.page_source
 #print(get_source)
 soup_go_site = BeautifulSoup(get_source, 'html.parser')
