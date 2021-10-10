@@ -1,8 +1,8 @@
-from bs4 import BeautifulSoup
 from selenium import webdriver
 import webbrowser as wb
 from urllib.parse import urljoin
-import requests
+from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
 
 def req_yand(driver_bw, url):
     driver_bw.get(url)
@@ -40,18 +40,26 @@ def parse_text_site(get_source):
 #        link = box.text
     return list_p
 
+#def read_text_last:
+    
+
 def read_text(list_p):
     j = 0
     a = ''
+    i = 0
     state_str = ''
-    max_count_symbls = 1024
+    max_count_symbls = 1000
     add_symbl = ''
     for text in list_p:
+#        print("************************************")
+#        print(text)
+#        print("************************************")
         for str in enumerate(text):
             if j < max_count_symbls:
                 add_symbl += str[1]
                 j += 1
             else:
+                print(str[1])
                 count = add_symbl.count(' ')
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
                     if a == '':
@@ -72,9 +80,18 @@ def read_text(list_p):
                 #Почистить add_symbl
                 add_symbl = ''
                 j = 0
+                if i == len(list_p) - 1:
+                    for string in enumerate(text):
+                        add_symbl += string[1]
+                        print(add_symbl)
+                    print(' '.join(add_symbl.split(' ')))
+                    
+        i+=1
+
 def main():
-#    path_driver = '/home/pin/git/skill_alisa_debian/Parse/geckodriver'
-    driver_bw = webdriver.Safari()
+#    path_driver = '/usr/bin/safaridriver'
+#   executable_path
+    driver_bw = webdriver.Chrome(ChromeDriverManager().install())
     ####################Request yandex####################
     url = 'https://yandex.ru/search/?lr=56&text={}'.format("ютуб")
     bw_page_source =req_yand(driver_bw, url)

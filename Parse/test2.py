@@ -265,6 +265,7 @@ capcha_main_content = http_req_capcha_main.request(url_capcha_main, method = "PO
 #print(capcha_main)
 #print("++++++++++++++++++++++++++++++++++")
 url_yan = capcha_main_content['location']
+print(url_yan)
 #http_req_main_capcha = httplib2.Http()
 #content_req_main = http_req_main_capcha.request(url_yan,method="GET")[1]
 #print(content_req_main.decode())
