@@ -50,6 +50,7 @@ def read_text(list_p):
     state_str = ''
     max_count_symbls = 1000
     add_symbl = ''
+    state_cycle = 0
     for text in list_p:
 #        print("************************************")
 #        print(text)
@@ -59,7 +60,8 @@ def read_text(list_p):
                 add_symbl += str[1]
                 j += 1
             else:
-                print(str[1])
+#                print('j:',j)
+#                print(str[1])
                 count = add_symbl.count(' ')
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
                     if a == '':
@@ -76,17 +78,24 @@ def read_text(list_p):
                     print()
                 state_str = str[1]
                 save_state = str[0]
+                state_cycle = i
                 #Отправить запрос
                 #Почистить add_symbl
                 add_symbl = ''
-                j = 0
-                if i == len(list_p) - 1:
-                    for string in enumerate(text):
-                        add_symbl += string[1]
-                        print(add_symbl)
-                    print(' '.join(add_symbl.split(' ')))
-                    
+                j = 0 
         i+=1
+    k = state_cycle
+    y = 0
+    add_symbl_last = ''
+    if i - state_cycle > 0:
+        for list in range(i-state_cycle - 1):
+            for str in enumerate(list[k]):
+                y+=1
+            if y < max_count_symbls:
+                print(text)                 
+            k+=1
+                    
+                
 
 def main():
 #    path_driver = '/usr/bin/safaridriver'
