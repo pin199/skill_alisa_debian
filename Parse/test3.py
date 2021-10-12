@@ -87,15 +87,27 @@ def read_text(list_p):
     k = state_cycle
     y = 0
     add_symbl_last = ''
+#    print(len(list_p))
     if i - state_cycle > 0:
-        for list in range(i-state_cycle - 1):
-            for str in enumerate(list[k]):
+        while k < i:
+#            print("=================")
+#            print(list_p[k])
+#            print("=================")
+            for string in enumerate(list_p[k]):
                 y+=1
+                if y < max_count_symbls:
+                    add_symbl_last += string[1]
+            print(y)
             if y < max_count_symbls:
-                print(text)                 
-            k+=1
-                    
+                print(list_p[k])
+            else:
                 
+            y = 0
+#            add_symbl_last = text
+#        if y < max_count_symbls:
+#            print(add_symbl_last)                 
+            k+=1
+                                    
 
 def main():
 #    path_driver = '/usr/bin/safaridriver'
