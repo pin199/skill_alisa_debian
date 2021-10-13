@@ -96,8 +96,8 @@ def read_text(list_p):
     count_last_text = 0 
     count_last_text = state_last_text.count(' ')
     cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
-#    for str in list_p[i]:
-        
+    index = list_p[k].find(cut_last_text)
+    print(index)
         
     if i - state_cycle > 0:
         while k < i:
