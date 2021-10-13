@@ -67,49 +67,48 @@ def read_text(list_p):
                 count = add_symbl.count(' ')
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
                     if a == '':
-                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1])) 
+                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
+                        state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1]) 
                         a =' '.join(add_symbl.split(' ')[count:])
                         print()
                     else:
                         print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
+                        state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                         a = ' '.join(add_symbl.split(' ')[count:])
                         print()
                 else:
                     print(a+state_str +' '.join(add_symbl.split(' ')[:-1]))
+                    state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                     a = ' '.join(add_symbl.split(' ')[count:])
                     print()
+#                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                 state_str = str[1]
                 save_state = str[0]
                 state_cycle = i
                 #Отправить запрос
-                #Почистить add_symbl
-                
+                #Почистить add_symbl            
                 add_symbl = ''
                 j = 0 
         i+=1
     k = state_cycle
     y = 0
     add_symbl_last = ''
-#    print(len(list_p))
+    count_last_text = 0 
+    count_last_text = state_last_text.count(' ')
+    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
+    for str in list_p[k]:
+        
     if i - state_cycle > 0:
         while k < i:
-#            print("=================")
-#            print(list_p[k])
-#            print("=================")
             for string in enumerate(list_p[k]):
                 y+=1
-                if y < max_count_symbls:
-                    add_symbl_last += string[1]
+            if y < max_count_symbls:
+                add_symbl_last += string[1]
             print(y)
             if y < max_count_symbls:
                 print(list_p[k])
 #            else:
                 
-#            y = 0
-#            add_symbl_last = text
-#        if y < max_count_symbls:
-#            print(add_symbl_last)                 
-            k+=1
                                     
 
 def main():
