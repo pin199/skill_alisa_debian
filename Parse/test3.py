@@ -51,6 +51,8 @@ def read_text(list_p):
     max_count_symbls = 1000
     add_symbl = ''
     state_cycle = 0
+#######State lasr text#########
+    state_last_text = ''
     for text in list_p:
 #        print("************************************")
 #        print(text)
@@ -81,6 +83,7 @@ def read_text(list_p):
                 state_cycle = i
                 #Отправить запрос
                 #Почистить add_symbl
+                
                 add_symbl = ''
                 j = 0 
         i+=1
@@ -100,9 +103,9 @@ def read_text(list_p):
             print(y)
             if y < max_count_symbls:
                 print(list_p[k])
-            else:
+#            else:
                 
-            y = 0
+#            y = 0
 #            add_symbl_last = text
 #        if y < max_count_symbls:
 #            print(add_symbl_last)                 
