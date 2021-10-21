@@ -103,11 +103,13 @@ def read_text(list_p):
         while k < i:
             for string in enumerate(list_p[k]):
                 y+=1
+#                print(string)
 #            if y < max_count_symbls:
 #                add_symbl_last += string[1]
 #            print(y)
             if y < max_count_symbls:
                 print(list_p[k])
+            k+=1
 #            else:
                 
                                     
