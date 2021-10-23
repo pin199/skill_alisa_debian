@@ -81,7 +81,7 @@ def read_text(list_p):
                     state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                     a = ' '.join(add_symbl.split(' ')[count:])
                     print()
-#                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                 state_str = str[1]
                 save_state = str[0]
                 state_cycle = i
@@ -92,25 +92,37 @@ def read_text(list_p):
         i+=1
     k = state_cycle
     y = 0
+    t = 0
     add_symbl_last = ''
     count_last_text = 0 
     count_last_text = state_last_text.count(' ')
     cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
     index = list_p[k].find(cut_last_text)
     print(index)
-        
+    cut_main_text = ' '.join(state_last_text.split(' ')[:-1 *(count_last_text - index)])
+    print("===========================")
+    print(cut_main_text)
+    print("===========================")
+
+      
+
     if i - state_cycle > 0:
         while k < i:
             for string in enumerate(list_p[k]):
                 y+=1
-#                print(string)
-#            if y < max_count_symbls:
-#                add_symbl_last += string[1]
-#            print(y)
+            
             if y < max_count_symbls:
                 print(list_p[k])
+            else: 
+                for string in enumerate(list_p[k]):
+                    if t < max_count_symbls:
+                        add_symbl_last += string[1]
+                        t+=1
+                    else:
+                        print(add_symbl_last)
+                        t = 0
+            
             k+=1
-#            else:
                 
                                     
 
