@@ -95,17 +95,29 @@ def read_text(list_p):
     t = 0
     add_symbl_last = ''
     count_last_text = 0 
-    count_last_text = state_last_text.count(' ')
-    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
-    index = list_p[k].find(cut_last_text)
+#    count_last_text = state_last_text.count(' ')
+    count_last_text = list_p[k].count(' ')
+    print("&&&&&&&&&&&&&&&&&&&&&&&&")
+    print(count_last_text)
+    print("&&&&&&&&&&&&&&&&&&&&&&&&")
+#    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
+    cut_last_text = ' '.join(list_p[k].split(' ')[count_last_text:])
+    print(cut_last_text)
+    index = list_p[k].find('января') #cut_last_text
     print(index)
     cut_main_text = ' '.join(state_last_text.split(' ')[:-1 *(count_last_text - index)])
     print("===========================")
     print(cut_main_text)
     print("===========================")
-
-      
-
+    print("+++++++++++++++++++++++++++")
+    print(list_p[k])
+    print("+++++++++++++++++++++++++++")
+    cut_list_main_text = ' '.join(list_p[k].split(' ')[index:])
+    print("***************************")
+    print(cut_list_main_text)
+    print("***************************")  
+    
+    
     if i - state_cycle > 0:
         while k < i:
             for string in enumerate(list_p[k]):
