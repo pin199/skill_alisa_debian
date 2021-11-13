@@ -21,7 +21,7 @@ def parse_sites(get_source):
     return href_search
 
 def go_site(driver_bw, list_sites):
-    driver_bw.get(list_sites[5])
+    driver_bw.get(list_sites[4])
     return driver_bw.page_source
 
 def parse_text_site(get_source):
@@ -81,7 +81,10 @@ def read_text(list_p):
                     state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                     a = ' '.join(add_symbl.split(' ')[count:])
                     print()
-                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+#                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+#                print(state_last_text)
+#                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+#                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
                 state_str = str[1]
                 save_state = str[0]
                 state_cycle = i
@@ -93,6 +96,9 @@ def read_text(list_p):
     k = state_cycle
     y = 0
     t = 0
+###########################
+###   state_last_text   ###
+###########################
     add_symbl_last = ''
     count_last_text = 0 
 #    count_last_text = state_last_text.count(' ')
