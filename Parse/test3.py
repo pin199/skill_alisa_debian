@@ -102,34 +102,60 @@ def read_text(list_p):
     add_symbl_last = ''
     count_last_text = 0 
 #    count_last_text = state_last_text.count(' ')
-    count_last_text = list_p[k].count(' ')
-    print("&&&&&&&&&&&&&&&&&&&&&&&&")
-    print(count_last_text)
-    print("&&&&&&&&&&&&&&&&&&&&&&&&")
+#    count_last_text = list_p[k].count(' ')
+    count_last_text = state_last_text.count(' ')
+#    print("&&&&&&&&&&&&&&&&&&&&&&&&")
+#    print(count_last_text)
+#    print("&&&&&&&&&&&&&&&&&&&&&&&&")
 #    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
-    cut_last_text = ' '.join(list_p[k].split(' ')[count_last_text:])
-    print(cut_last_text)
-    index = list_p[k].find('января') #cut_last_text
-    print(index)
-    cut_main_text = ' '.join(state_last_text.split(' ')[:-1 *(count_last_text - index)])
-    print("===========================")
-    print(cut_main_text)
-    print("===========================")
-    print("+++++++++++++++++++++++++++")
-    print(list_p[k])
-    print("+++++++++++++++++++++++++++")
-    cut_list_main_text = ' '.join(list_p[k].split(' ')[index:])
-    print("***************************")
-    print(cut_list_main_text)
-    print("***************************")  
+    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
+#    print(cut_last_text)
+    index = list_p[k].find(cut_last_text) #cut_last_text
+#    print(index)
     
+    text_per = 0
+    index_per = 0
+    #### Узнаем индекс последнего слова ####
+    for str in enumerate(list_p[k]):
+        text_per += 1
+        if str[1] == ' ':
+            index_per += 1
+        if text_per == index:
+            break;
+            
+#    print("==========================")
+#    print(index_per)
+#    print("==========================")
     
+    cut_until_last_word = ' '.join(list_p[k].split(' ')[index_per + 1:])
+#    print("++++++++++++++++++++++++++++++")
+#    print(cut_until_last_word)
+#    print("++++++++++++++++++++++++++++++")
+    
+#    cut_main_text = ' '.join(state_last_text.split(' ')[:-1 *(count_last_text - index)])
+#    print("===========================")
+#    print(cut_main_text)
+#    print("===========================")
+#    print("+++++++++++++++++++++++++++")
+#    print(list_p[k])
+#    print("+++++++++++++++++++++++++++")
+#    cut_list_main_text = ' '.join(list_p[k].split(' ')[index:])
+#    print("***************************")
+#    print(cut_list_main_text)
+#    print("***************************")  
+    
+    cut_until_last_word_count = 0
+    for str in enumerate(cut_until_last_word):
+        cut_until_last_word_count += 1
+
     if i - state_cycle > 0:
         while k < i:
             for string in enumerate(list_p[k]):
                 y+=1
-            
-            if y < max_count_symbls:
+            if cut_until_last_word_count < max_count_symbls:
+                cut_until_last_word_count = max_count_symbls + 1
+                print(cut_until_last_word)
+            elif y < max_count_symbls:
                 print(list_p[k])
             else: 
                 for string in enumerate(list_p[k]):
