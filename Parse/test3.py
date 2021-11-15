@@ -21,7 +21,7 @@ def parse_sites(get_source):
     return href_search
 
 def go_site(driver_bw, list_sites):
-    driver_bw.get(list_sites[4])
+    driver_bw.get(list_sites[9])
     return driver_bw.page_source
 
 def parse_text_site(get_source):
@@ -54,16 +54,11 @@ def read_text(list_p):
 #######State lasr text#########
     state_last_text = ''
     for text in list_p:
-#        print("************************************")
-#        print(text)
-#        print("************************************")
         for str in enumerate(text):
             if j < max_count_symbls:
                 add_symbl += str[1]
                 j += 1
             else:
-#                print('j:',j)
-#                print(str[1])
                 count = add_symbl.count(' ')
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
                     if a == '':
@@ -81,10 +76,6 @@ def read_text(list_p):
                     state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
                     a = ' '.join(add_symbl.split(' ')[count:])
                     print()
-#                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-#                print(state_last_text)
-#                state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
-#                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
                 state_str = str[1]
                 save_state = str[0]
                 state_cycle = i
@@ -93,25 +84,16 @@ def read_text(list_p):
                 add_symbl = ''
                 j = 0 
         i+=1
+
+######## Next function #########
     k = state_cycle
     y = 0
     t = 0
-###########################
-###   state_last_text   ###
-###########################
     add_symbl_last = ''
     count_last_text = 0 
-#    count_last_text = state_last_text.count(' ')
-#    count_last_text = list_p[k].count(' ')
     count_last_text = state_last_text.count(' ')
-#    print("&&&&&&&&&&&&&&&&&&&&&&&&")
-#    print(count_last_text)
-#    print("&&&&&&&&&&&&&&&&&&&&&&&&")
-#    cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
     cut_last_text = ' '.join(state_last_text.split(' ')[count_last_text:])
-#    print(cut_last_text)
     index = list_p[k].find(cut_last_text) #cut_last_text
-#    print(index)
     
     text_per = 0
     index_per = 0
@@ -122,27 +104,8 @@ def read_text(list_p):
             index_per += 1
         if text_per == index:
             break;
-            
-#    print("==========================")
-#    print(index_per)
-#    print("==========================")
     
     cut_until_last_word = ' '.join(list_p[k].split(' ')[index_per + 1:])
-#    print("++++++++++++++++++++++++++++++")
-#    print(cut_until_last_word)
-#    print("++++++++++++++++++++++++++++++")
-    
-#    cut_main_text = ' '.join(state_last_text.split(' ')[:-1 *(count_last_text - index)])
-#    print("===========================")
-#    print(cut_main_text)
-#    print("===========================")
-#    print("+++++++++++++++++++++++++++")
-#    print(list_p[k])
-#    print("+++++++++++++++++++++++++++")
-#    cut_list_main_text = ' '.join(list_p[k].split(' ')[index:])
-#    print("***************************")
-#    print(cut_list_main_text)
-#    print("***************************")  
     
     cut_until_last_word_count = 0
     for str in enumerate(cut_until_last_word):
