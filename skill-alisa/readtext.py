@@ -4,15 +4,12 @@ from urllib.parse import urljoin
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
-class:
-
-def __init__(self):
-    
+#class ReadText:  
 
 def req_yand(driver_bw, url):
     driver_bw.get(url)
     return driver_bw.page_source
-
+'''
 def parse_sites(get_source):
     soup_main_capcha = BeautifulSoup(get_source, 'html.parser')
     boxes_main_capcha = soup_main_capcha.find_all('a',class_='path__item')
@@ -24,11 +21,24 @@ def parse_sites(get_source):
         except:
             pass
     return href_search
+'''
+
+def parse_sites(get_source):
+    soup_main_capcha = BeautifulSoup(get_source, 'html.parser')
+    boxes_main_capcha = soup_main_capcha.find('a', class_='path__item')
+    href_search=[]
+    link = boxes_main_capcha.attrs['href']
+    href_search.append(link)
+    return href_search
 
 def go_site(driver_bw, list_sites):
-    driver_bw.get(list_sites[3])
+    print("---------------------")
+    print(list_sites[0])
+    print("---------------------")
+    driver_bw.get(list_sites[0])
     return driver_bw.page_source
 
+'''
 def parse_text_site(get_source):
     soup_go_site = BeautifulSoup(get_source, 'html.parser')
     boxes_go_site = soup_go_site.find_all('p')
@@ -44,8 +54,16 @@ def parse_text_site(get_source):
 #    for box in boxes_go_site_title:
 #        link = box.text
     return list_p
+'''
+def parse_text_site(get_source):
+    soup_go_site = BeautifulSoup(get_source, 'html.parser')
+    boxes_go_site = soup_go_site.find('p')
+    list_p = []
+    list_p.append(boxes_go_site)
+    return list_p
 
-def read_text_last(state_last_text,state_cycle,list_p,i,max_count_symbls):
+'''
+def read_text_last(state_last_text,state_cycle,list_p,i,max_count_symbls,list_text):
     k = state_cycle
     y = 0
     t = 0
@@ -77,16 +95,18 @@ def read_text_last(state_last_text,state_cycle,list_p,i,max_count_symbls):
                 y+=1
             if cut_until_last_word_count < max_count_symbls:
                 cut_until_last_word_count = max_count_symbls + 1
-                print(cut_until_last_word)
+#                print(cut_until_last_word)
             elif y < max_count_symbls:
-                print(list_p[k])
+                list_text.append(list_p[k])
+#                print(list_p[k])
             else:
                 for string in enumerate(list_p[k]):
                     if t < max_count_symbls:
                         add_symbl_last += string[1]
                         t+=1
                     else:
-                        print(add_symbl_last)
+                        list_text.append(list_p[k])
+#                        print(add_symbl_last)
                         t = 0
             k+=1
     
@@ -95,6 +115,7 @@ def read_text(list_p):
     j = 0
     a = ''
     i = 0
+    list_text = []
     state_str = ''
     max_count_symbls = 1000
     add_symbl = ''
@@ -110,18 +131,21 @@ def read_text(list_p):
                 count = add_symbl.count(' ')
                 if str[1] != ' ' and str[1] != '.' and str[1] != '' and str[1] != ',':
                     if a == '':
-                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
-                        state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1]) 
+#                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
+                        state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+                        list_text.append(state_last_text)
                         a =' '.join(add_symbl.split(' ')[count:])
                         print()
                     else:
-                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
+#                        print(a+state_str+' '.join(add_symbl.split(' ')[:-1]))
                         state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+                        list_text.append(state_last_text)
                         a = ' '.join(add_symbl.split(' ')[count:])
                         print()
                 else:
-                    print(a+state_str +' '.join(add_symbl.split(' ')[:-1]))
+#                    print(a+state_str +' '.join(add_symbl.split(' ')[:-1]))
                     state_last_text = a + state_str + ' '.join(add_symbl.split(' ')[:-1])
+                    list_text.append(state_last_text)
                     a = ' '.join(add_symbl.split(' ')[count:])
                     print()
                 state_str = str[1]
@@ -132,8 +156,17 @@ def read_text(list_p):
                 add_symbl = ''
                 j = 0 
         i+=1
-    read_text_last(state_last_text,state_cycle,list_p,i,max_count_symbls)
+    if len(list_p) > 1:
+        read_text_last(state_last_text,state_cycle,list_p,i,max_count_symbls,list_text)
+    return list_text
+'''
 
+def read_text(list_p):
+    return list_p[0]
+        
+
+
+"""
 def alisa_read_text():
     driver_bw = webdriver.Chrome(ChromeDriverManager().install())
     ####################Request yandex####################
@@ -152,6 +185,7 @@ def alisa_read_text():
     read_text(list_parse_text)
     ###################ExitDriver######################
     driver_bw.close()
+"""
 """
 def main():
 #    path_driver = '/usr/bin/safaridriver'

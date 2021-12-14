@@ -58,34 +58,23 @@ def workwithpin (pinname):
             keyswork(pinname)
         else:
             pass
+
 def flask_request_run_alisa():
-	ngrokFile = "/home/pin/Downloads"
-	s_4 = subprocess.Popen(["gnome-terminal -- bash -c \
-	'cd /home/pin/SkillAlisa/skill-alisa; export FLASK_APP=app.py;python3 -m flask run --port=4000; exec bash;'"],shell=True)
-	s_1 = subprocess.Popen(["/home/pin/Downloads/ngrok", 
-	"http", "4000"])
-	
-#	s_4 = subprocess.Popen(["cd /home/pin/SkillAlisa/skill-alisa && gnome-terminal && export FLASK_APP=app.py && python3 -m flask run --port=80"], shell=True)
-#	s_4 = subprocess.Popen(["gnome-terminal -- bash -c 'cd /home/pin/SkillAlisa/skill-alisa;exec bash' "],shell=True )
-#	s_2 = subprocess.run(["export FLASK_APP=/home/pin/SkillAlisa/skill-alisa/app.py"],shell=True)
-#	s_3 = subprocess.Popen(["python3", "-m", "flask", "run", "--port=80"])
-	#gnome-terminal
-#	print("func")
-#	subprocess.call(["cd", ngrokFile])
-#	print("func_1")
+    ngrokFile = "/Users/nikolaj/PythonProg"
+#    s_4 = subprocess.Popen(["gnome-terminal -- bash -c \ 'cd /Users/nikolaj/PythonProg/gitSkillAlisa/skill_alisa_debian/skill-alisa; export FLASK_APP=app.py;python3 -m flask run --port=4000; exec bash;'"],shell=True)
+#    s_1 = subprocess.Popen(["/Users/nikolaj/PythonProg/ngrok","http","4000"])
+    s_4 = subprocess.Popen(["osascript -e 'tell app \"Terminal\" to do script \"cd /Users/nikolaj/PythonProg/gitSkillAlisa/skill_alisa_debian/skill-alisa;export FLASK_APP=app.py;python3 -m flask run --port=4000;\"'"],shell=True)
+    s_1 = subprocess.Popen(["osascript -e 'tell app \"Terminal\" to do script \"/Users/nikolaj/PythonProg/ngrok/ngrok http 4000\"'"],shell=True)
+    print("TEST")
+#    s_1 = subprocess.Popen(["/Users/nikolaj/PythonProg/ngrok","http","4000"])
 
 @blynk.handle_event('write V0')
 def write_virtual_pin_handler(pin, value):
-#	print("{} {}".format(pin,value))
-	if str(value) == "['1']":
-#		print("Next1")
-#		flask_request_run_alisa()
-#		print("Next")
-		app="/opt/google/chrome/google-chrome"
-		subprocess.Popen(app)
-		flask_request_run_alisa()
-#		startcmd(app)
-		print('open' + app)
+    if str(value) == "['1']":
+        app="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        subprocess.Popen(app)
+        flask_request_run_alisa()
+        print('open' + app)
 
 #---------------------Начало блока функций для виртуальных пинов blynk-----------------
 @blynk.handle_event('write V1') #данный пин используем для управления общей громкостью ПК
